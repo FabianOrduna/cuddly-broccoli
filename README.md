@@ -15,8 +15,8 @@
 Why are we awesome?
 
 -	🔭 Because Nelson is a geophysicist (no, earthquakes can’t be predicted), leftie and gamer.
--	📫 Because Miguel is an economist and actuary and enjoy work with models and numbers. 
--	⚡ Because Jorge enjoys write code and think that is great to learn about cloud. 
+-	📫 Because Miguel is an economist/actuarial scientist and will judge you based on your p-values. 
+-	⚡ Because Jorge enjoys writting code and thinks that the cloud rocks. 
 - 🖥️ Because Fabian is a software engineer with experience in web development, distributed systems and can hack your phone if he wants.
 
 Together we can learn about each other, and we can solve many kinds of problems merging our skills as one brain to conquer Data Product Architecture.
