@@ -41,6 +41,12 @@ Together we can learn about each other, and we can solve many kinds of problems 
 
 1. Where would you get your data from? How much data would you need? Is there anything publicily available or do you need to build your own dataset? 
 
+The data for our project will be extracted from the [API-FOOTBALL](https://www.api-football.com/documentation-v3), a free to use API containing Timezones, Countries, Leagues, Teams, Venues, Standings, Fixtures, Injuries, Predictions, Coachs, Players, Transfers, Trophies, Sidelined and Odds. 
+
+The most important data that could be used as features for our predictive model are countries, leagues, teams, standings and predictions can be used to compare or even reinforce our model. 
+
+*Build our own dataset?* 
+
 ### 5. Modeling
 
 ### 6. Evaluation
