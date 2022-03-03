@@ -27,13 +27,19 @@ Together we can learn about each other, and we can solve many kinds of problems 
 
 1. What is the problem that your Data Product will solve? 
 
+Football soccer is by far the most followed sport around the world. According to [topendsports](https://www.topendsports.com/world/lists/popular-sport/fans.htm) football is the most popular sport globally approximately 3.5 billion fans followed by cricket with 2.5 billion fans. Many of these fans like to be aware of the odds for future games of their teams, specially with upcoming fooball classics like FC vs Real Madrid, Manchester United vs Liverpool or America vs Chivas in the mexican league. Another proportion of these followers are looking for betting tips. This data product is looking to predict the future football match outputs (win, loss or tie), this prediction could be used for informative means or as tips. 
+
 2. If a company was to use this application, what would be their ML objectives and business objectives? 
 
 ### 2. Users
 
 1. Who will be the users of your application?
 
+Football fans looking for predictions about football game results. 
+
 2. How are users going to interact with your application? 
+
+Match results will be displayed in tables containing the opponents in the game and the probability of a win, loss or tie. Additionally, the user could be able to filter games by region, league or by date. 
 
 ### 3. Data Product Architecture Diagram
 
