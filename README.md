@@ -31,6 +31,9 @@ Football soccer is by far the most followed sport around the world. According to
 
 2. If a company was to use this application, what would be their ML objectives and business objectives? 
 
+ML Objetives. Reducir los falsos positivos. 
+Business objetives. Aumentar el set de herramientas disponibles que le permitan a los apostaodres profesionales o amateurs tomar mejores decisiones
+
 ### 2. Users
 
 1. Who will be the users of your application?
@@ -55,12 +58,31 @@ The most important data that could be used as features for our predictive model 
 
 ### 5. Modeling
 
+Interface of users. We want a friendly interface for the user. The idea is that the user put a basic parameter of search that are league, team from home and team from away and thus obtain the probability of win, draw, and lose in each case. On the other hand, the request will display the last statistics of the teams to contribute to use the predicted choice or change it. The idea is to give to the client the tools that contribute to the best election. 
+
+Model. The initial idea of the model is to adjust a neural network, logistic regression and any other algorithms to get the best model based on the match of the teams under local or visit conditions, number of goals and other statistics. We want to do a set up of the model at the end of each season ant put it in a production environment way in order to use for a new season. We do not plan to conserve the old model; each new train means re-write over the old model. 
+
+Finally, each prediction displays main statistics of the teams. This statistic will conserve on the table, the idea is conserving the statistics of the last month into a data table in order to show repeat information for a different client user, that means, same match prediction result will display same statistics. To obtain new statistics that we do not consult previously we will request from the API the necessary information about it. 
+
+Software. Python to train the models and PHP to display the front-end application. Postgres to data base management. The idea is use Postgres to conserve results of the prediction model to compare and implement improvements over the last production model. On the other hand, with Postgres we storage the data to train a model and the statistic of the requested matches. 
+
+Scope. Our service only plan to predict match in one leagues that is Premier league. 
+
+
 ### 6. Evaluation
+
+1. Evaluar los falsos positivos y falsos negativos y especificar què es cada uno y porque es más importante si lo comparamos con el accuracy
+2. Desde un punto de vista de negocio sería medir la efectividad de los resultados vs casas de apuestas. 
 
 ### 7. Inference
 
+1. En un inicio seríamos batch prediction, sin embargo no descartamos ser una combinación de ambos acorde a la evolución de nuestor modelo (mejora) pensando en meter variables que representen casos fotuitos que puedan alterar el resultado. 
+2. Preguntar
+3. Preguntar
+
 ### 8. Compute
-
+Fabian
 ### 9. MVP
-
+Fabian
 ### 10. Pre-mortems
+Todos lluvia de ideas
