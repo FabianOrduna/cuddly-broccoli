@@ -71,14 +71,29 @@ Scope. Our service only plan to predict match in one leagues that is Premier lea
 
 ### 6. Evaluation
 
-1. Evaluar los falsos positivos y falsos negativos y especificar què es cada uno y porque es más importante si lo comparamos con el accuracy
-2. Desde un punto de vista de negocio sería medir la efectividad de los resultados vs casas de apuestas. 
+1. How would you evaluate your model performance, both during training and
+inference?
+
+We would evaluate if the percentage of false positives is strictly smaller than a threshold defined by the client. In this case, we understand a false positive as a situation where the model predicts a team will win a match when in reality the opposite happens. We believe false positives are what the client is ultimately interested in minimizing, whereas alternative measures like accuracy might be misleading.
+
+
+2. How would you evaluate whether your application satisfies its objectives?
+
+We would compare our performance against that of profesional betting houses. From the Football API we can retrieve betting odds from several webpages. If we can manage to get data of the results of professional gamblers, we might compare against them as well.
 
 ### 7. Inference
 
-1. En un inicio seríamos batch prediction, sin embargo no descartamos ser una combinación de ambos acorde a la evolución de nuestor modelo (mejora) pensando en meter variables que representen casos fotuitos que puedan alterar el resultado. 
-2. Preguntar
-3. Preguntar
+1. Will you be doing online prediction or batch prediction or a combination of both?
+
+We intend to do batch prediction, however we might do online prediction if we can manage to.
+
+2. Will the inference run on-device or through a server?
+
+On-device 
+
+3. Can you run inference on CPUs or an edge device or do you need GPUs?
+
+We will only need CPUs.
 
 ### 8. Compute
 Fabian
