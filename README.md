@@ -27,7 +27,7 @@ Together we can learn about each other, and we can solve many kinds of problems 
 
 1. What is the problem that your Data Product will solve? 
 
-Football soccer is by far the most followed sport around the world. According to [topendsports](https://www.topendsports.com/world/lists/popular-sport/fans.htm) football is the most popular sport globally approximately 3.5 billion fans followed by cricket with 2.5 billion fans. Many of these fans like to be aware of the odds for future games of their teams, specially with upcoming fooball classics like FC vs Real Madrid, Manchester United vs Liverpool or America vs Chivas in the mexican league. Another proportion of these followers are looking for betting tips. This data product is looking to predict the future football match outputs (win, loss or tie), this prediction could be used for informative means or as tips. 
+According to [topendsports](https://www.topendsports.com/world/lists/popular-sport/fans.htm) football is the most popular sport globally approximately 3.5 billion fans followed by cricket with 2.5 billion fans. Many of these fans like to be aware of the odds for future games of their teams, specially with upcoming fooball classics like FC Barcelona vs Real Madrid, Manchester United vs Liverpool or America vs Chivas in the mexican league. Another proportion of these followers are looking for betting tips. This data product intends to predict football match results (win, loss or tie), this prediction could be used for informative means or as betting tips. 
 
 2. If a company was to use this application, what would be their ML objectives and business objectives? 
 
@@ -50,23 +50,21 @@ Match results will be displayed in tables containing the opponents in the game a
 
 1. Where would you get your data from? How much data would you need? Is there anything publicily available or do you need to build your own dataset? 
 
-The data for our project will be extracted from the [API-FOOTBALL](https://www.api-football.com/documentation-v3), a free to use API containing Timezones, Countries, Leagues, Teams, Venues, Standings, Fixtures, Injuries, Predictions, Coachs, Players, Transfers, Trophies, Sidelined and Odds. 
-
-The most important data that could be used as features for our predictive model are countries, leagues, teams, standings and predictions can be used to compare or even reinforce our model. 
+The data for our project will be extracted from the [API-FOOTBALL](https://www.api-football.com/documentation-v3), a free API containing Timezones, Countries, Leagues, Teams, Venues, Standings, Fixtures, Injuries, Predictions, Coachs, Players, Transfers, Trophies, Sidelined and Odds. 
 
 *Build our own dataset?* 
 
 ### 5. Modeling
 
-Interface of users. We want a friendly interface for the user. The idea is that the user put a basic parameter of search that are league, team from home and team from away and thus obtain the probability of win, draw, and lose in each case. On the other hand, the request will display the last statistics of the teams to contribute to use the predicted choice or change it. The idea is to give to the client the tools that contribute to the best election. 
+**User interface**: Our interface will be user-friendly. we will display some comboboxes with basic parameters like league, team, date, etc and then it will provide the user with win, draw or lose probabilities for the next match. Also, it will also display recent statistics of both the home and away teams (since football is usually about streaks). The idea is to provide to the client with the best tools to bet. 
 
-Model. The initial idea of the model is to adjust a neural network, logistic regression and any other algorithms to get the best model based on the match of the teams under local or visit conditions, number of goals and other statistics. We want to do a set up of the model at the end of each season ant put it in a production environment way in order to use for a new season. We do not plan to conserve the old model; each new train means re-write over the old model. 
+**Model**:. The initial idea of the model is to adjust a neural network, logistic regression and any other algorithms to get the best prediction based on several variables available (recent matches, venue, expected goals, etc). We would re-train the model each transfer window and replace the old model. 
 
-Finally, each prediction displays main statistics of the teams. This statistic will conserve on the table, the idea is conserving the statistics of the last month into a data table in order to show repeat information for a different client user, that means, same match prediction result will display same statistics. To obtain new statistics that we do not consult previously we will request from the API the necessary information about it. 
+[JORGE LA VERDAD A ESTO NO LE ENTENDI] We will display main statistics of the teams. This statistics will be saved, the idea is conserving the statistics of the last month into a data table in order to show repeat information for a different client user, that means, same match prediction result will display same statistics. To obtain new statistics that we do not consult previously we will request from the API the necessary information about it. 
 
-Software. Python to train the models and PHP to display the front-end application. Postgres to data base management. The idea is use Postgres to conserve results of the prediction model to compare and implement improvements over the last production model. On the other hand, with Postgres we storage the data to train a model and the statistic of the requested matches. 
+**Software**: Python to train the models and PHP to display the front-end application. Postgres to data base management. The idea is use Postgres to conserve results of the prediction model to compare and implement improvements over the last production model. On the other hand, with Postgres we storage the data to train a model and the statistic of the requested matches. 
 
-Scope. Our service only plan to predict match in one leagues that is Premier league. 
+**Scope**: Premier League matches. 
 
 
 ### 6. Evaluation
