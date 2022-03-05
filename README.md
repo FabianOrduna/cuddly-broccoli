@@ -31,19 +31,19 @@ According to [topendsports](https://www.topendsports.com/world/lists/popular-spo
 
 2. If a company was to use this application, what would be their ML objectives and business objectives? 
 
-The ML objectives is to reduce the false positive rate over the output predictions. 
+The ML objectives is to reduce the false positive rate over the output predictions. By false positive we mean the model predicts a team will win a match when in reality the opposite happens.
 
-The company's business objectives would be to provide an additional set of tools to help gamblers in decision making process. 
+The company's business objective would be to provide an additional set of tools to help gamblers in decision making process. But also, this can be used by different betting houses to improve their business income.
 
 ### 2. Users
 
 1. Who will be the users of your application?
 
-Football fans looking for predictions about football game results. 
+Football fans looking for predictions about football game results and betting houses.
 
 2. How are users going to interact with your application? 
 
-Match results will be displayed in tables containing the opponents in the game and the probability of a win, loss or tie. We will display some comboboxes with basic parameters like league, team, date, etc and then it will provide the user with win, draw or lose probabilities for the next match. Also, it will also display recent statistics of both the home and away teams (since football is usually about streaks). The idea is to provide to the client with the best tools to bet. 
+Match results will be displayed, in a website, with tables containing the opponents in the game and the probability of a win, loss or tie. We will display some comboboxes with basic parameters like league, team, date, etc and then it will provide the user with win, draw or lose probabilities for the next match. Also, it will display recent statistics of both the home and away teams (since football is usually about streaks). The idea is to provide to the client with the best tools to bet. 
 
 
 ### 3. Data Product Architecture Diagram
@@ -52,17 +52,26 @@ Match results will be displayed in tables containing the opponents in the game a
 
 1. Where would you get your data from? How much data would you need? Is there anything publicily available or do you need to build your own dataset? 
 
-The data for our project will be extracted from the [API-FOOTBALL](https://www.api-football.com/documentation-v3), a free API containing Timezones, Countries, Leagues, Teams, Venues, Standings, Fixtures, Injuries, Predictions, Coachs, Players, Transfers, Trophies, Sidelined and Odds. 
+The data for our project will be extracted from the [API-FOOTBALL](https://www.api-football.com/documentation-v3), a free API containing Timezones, Countries, Leagues, Teams, Venues, Standings, Fixtures, Injuries, Predictions, Coachs, Players, Transfers, Trophies, Sidelined and Odds.
+
+
+
+
+PONER AQUI LA API DE LA FIFA Y LOS BENEFICIOS... Y MENCIONAR QUE SE HARAN MODELOS CON Y SIN ESTA INFORMACION
+
+
+
 
 ### 5. Modeling
 
-**User interface**: Our interface will be user-friendly. we will display some comboboxes with basic parameters like league, team, date, etc and then it will provide the user with win, draw or lose probabilities for the next match. Also, it will also display recent statistics of both the home and away teams (since football is usually about streaks). The idea is to provide to the client with the best tools to bet. 
 
 **Model**:. The initial idea of the model is to adjust a neural network, logistic regression and any other algorithms to get the best prediction based on several variables available (recent matches, venue, expected goals, etc). We would re-train the model each transfer window and replace the old model. 
 
 [JORGE LA VERDAD A ESTO NO LE ENTENDI] We will display main statistics of the teams. This statistics will be saved, the idea is conserving the statistics of the last month into a data table in order to show repeat information for a different client user, that means, same match prediction result will display same statistics. To obtain new statistics that we do not consult previously we will request from the API the necessary information about it. 
 
 **Software**: Python to train the models and PHP to display the front-end application. Postgres to data base management. The idea is use Postgres to conserve results of the prediction model to compare and implement improvements over the last production model. On the other hand, with Postgres we storage the data to train a model and the statistic of the requested matches. 
+
+**User interface**: Our interface will be user-friendly. we will display some comboboxes with basic parameters like league, team, date, etc and then it will provide the user with win, draw or lose probabilities for the next match. Also, it will also display recent statistics of both the home and away teams (since football is usually about streaks). The idea is to provide to the client with the best tools to bet. 
 
 **Scope**: Premier League matches. 
 
