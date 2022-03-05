@@ -21,6 +21,8 @@ Why are we awesome?
 
 Together we can learn about each other, and we can solve many kinds of problems merging our skills as one brain to conquer Data Product Architecture.
 
+![image](https://user-images.githubusercontent.com/22153745/156893460-d9d8e809-653d-4e13-8f56-72ad2d2f0ec0.png)
+
 # Project Proposal 
 
 ### 1. Objectives
