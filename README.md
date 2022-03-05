@@ -48,6 +48,8 @@ Match results will be displayed, in a website, with tables containing the oppone
 
 ### 3. Data Product Architecture Diagram
 
+![diagrama](https://user-images.githubusercontent.com/81533291/156893198-46c54522-96c2-457b-a5ea-bed6a458abb8.png)
+
 ### 4. Data
 
 1. Where would you get your data from? How much data would you need? Is there anything publicily available or do you need to build your own dataset? 
