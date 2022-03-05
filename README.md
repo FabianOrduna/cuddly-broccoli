@@ -114,7 +114,7 @@ As mentioned above we need different tools from GCP and apart from that clarify 
 
 ### 9. MVP
 
-As an MVP we want to have all the pipeline since the API data retrieval, the model and a dashboard to the end user to make predictions in an easy and quick way
+As an MVP we want to have all the pipeline since the API data retrieval, data transformation, data storage, the model training, etc. and a dashboard to the end user to make predictions in an easy and quick way
 
 ### 10. Pre-mortems
 Todos lluvia de ideas
