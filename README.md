@@ -171,4 +171,32 @@ As mentioned above we need different tools from GCP and apart from that clarify 
 As an MVP we want to have all the pipeline since the API data retrieval, data transformation, data storage, the model training, etc. and a dashboard to the end user to make predictions in an easy and quick way
 
 ### 10. Pre-mortems
-Todos lluvia de ideas
+
+- What are the risky aspects of the project? i. e.g. not enough data, limited compute resources, not knowing how to implement an interface, network latency, inference latency, etc.
+
+We consider there are many different risky aspects for this project:
+
+    * Model related:
+        Amount of data.
+        Data quality.
+        Importance of variables to build a functional model.
+        Availability of data like match coverage.
+        Model quality and performance. Overfiting vs underfiting vs dummy classifier.
+        Non-infomative model. Select a bad threshold.
+     
+     * Infraestructure related:
+        Availability of GCP tools.
+        Data availability of APIs
+
+- If your team fails to build the application you want, what do you think might have caused the failure?
+
+    Based on the knowledge we have about the context of the project we consider the only way we could fail to build the application is related to things we cannot control as data availabilit, infraestrucute problems, data availability/quality. But also a failure can be related with the way we build/train/evaluate the model so we won't be innovating and we would have a low predictive power/model.
+
+- What are the limitations of your application?
+
+It's going to work only with the Premier League, it won't consider unexpected events like important players transfered to other teams, team players injuries, etc. It does not use the current competition information to predict, but could be incoporated as an enhancement for a real-time model.
+
+- What are the potential biases of your application?
+
+During a campaign there are several teams that are consider as potential winners like Manchester City, Chelsea, Manchester United so we could never think about a team like Leicester City could be a winner so the model won't be able to predict accurately results involving new teams in the league. If we use the team income as a variable it could include potential biases to the model. The model does not consider the lineup for every match so if a really important player does not play would have the same score as if he plays.
+
