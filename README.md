@@ -57,7 +57,13 @@ The data for our project will be extracted from the [API-FOOTBALL](https://www.a
 
 
 
+
+
+
 PONER AQUI LA API DE LA FIFA Y LOS BENEFICIOS... Y MENCIONAR QUE SE HARAN MODELOS CON Y SIN ESTA INFORMACION
+
+
+
 
 
 
@@ -65,11 +71,40 @@ PONER AQUI LA API DE LA FIFA Y LOS BENEFICIOS... Y MENCIONAR QUE SE HARAN MODELO
 ### 5. Modeling
 
 
-**Model**:. The initial idea of the model is to adjust a neural network, logistic regression and any other algorithms to get the best prediction based on several variables available (recent matches, venue, expected goals, etc). We would re-train the model each transfer window and replace the old model. 
+**Model**:. 
+
+The objective of the model is simple, we want to determine 3 possible results that are win, draw or lose. How can you determine this result? The answers is easy, you only need to view the goals of each team and that all. So, the big challenge is to find the way to determine the winner or loser.
+
+So, like any other sport when you want to bet for a winner a lot of times the best tool to take a decision is look forward statistics. In that case, we want to design a model that support its results in the most relevant statistic and show the result through the number of goals of each team, that means  we want to set a model to predict the number of goals for each team in a match. 
+
+To achieve our objective we need to consider the follow points:
+
+1. We need to consider the condition of visitant or local in a match
+2. The ability of each team is important, and we will consider a score of attack and a score to defend of each team
+
+For the second point we will explore the FIFA API that consider score for the performance in attack and defense of each team. We consider that is a good reference. The condition of home or away will be a rate that consider the average of total win games under the home condition. 
+
+With those parameters we want to follow of Mark j. Dixon and Stuart G. Coles but with a variant on the parameter because we want to use a FIFA API instead of  maximum likelihood estimator and we want to compare both of them.
+
+The find the best model we want to explore different algorithms like neural networks, logistic regression and so on to get the best prediction based on several variables available (recent matches, venue, expected goals, etc).
+
+
+
+
+
+
+
+ESCRIBIR NUEVAMENTE EL TEXTO DE ABAJO
 
 [JORGE LA VERDAD A ESTO NO LE ENTENDI] We will display main statistics of the teams. This statistics will be saved, the idea is conserving the statistics of the last month into a data table in order to show repeat information for a different client user, that means, same match prediction result will display same statistics. To obtain new statistics that we do not consult previously we will request from the API the necessary information about it. 
 
-**Software**: Python to train the models and PHP to display the front-end application. Postgres to data base management. The idea is use Postgres to conserve results of the prediction model to compare and implement improvements over the last production model. On the other hand, with Postgres we storage the data to train a model and the statistic of the requested matches. 
+
+
+
+
+
+
+**Software**: Python to train the models and PHP to display the front-end application. Postgres as data base management system. The idea is use Postgres to conserve results of the prediction model to compare and implement improvements over the last production model. On the other hand, with Postgres we storage the data to train a model and the statistic of the requested matches. 
 
 **User interface**: Our interface will be user-friendly. we will display some comboboxes with basic parameters like league, team, date, etc and then it will provide the user with win, draw or lose probabilities for the next match. Also, it will also display recent statistics of both the home and away teams (since football is usually about streaks). The idea is to provide to the client with the best tools to bet. 
 
@@ -81,12 +116,18 @@ PONER AQUI LA API DE LA FIFA Y LOS BENEFICIOS... Y MENCIONAR QUE SE HARAN MODELO
 1. How would you evaluate your model performance, both during training and
 inference?
 
-We would evaluate if the percentage of false positives is strictly smaller than a threshold defined by the client. In this case, we understand a false positive as a situation where the model predicts a team will win a match when in reality the opposite happens. We believe false positives are what the client is ultimately interested in minimizing, whereas alternative measures like accuracy might be misleading.
+We will evaluate if the percentage of false positives is strictly smaller than a threshold defined by the client. In this case, we understand a false positive as a situation where the model predicts a team will win a match when in reality the opposite happens. We believe false positives are what the client is ultimately interested in minimizing, whereas alternative measures like accuracy might be misleading.
 
 
 2. How would you evaluate whether your application satisfies its objectives?
 
 We would compare our performance against that of profesional betting houses. From the Football API we can retrieve betting odds from several webpages. If we can manage to get data of the results of professional gamblers, we might compare against them as well.
+
+
+
+SERIA BUENO VER SI TIENEN APIS ESAS CASAS DE APUESTAS. PONER AQUI EL LINK AL API. Y EXPLICAR COMO SERÍA EL PROCESO DE COMPARAR.
+
+
 
 ### 7. Inference
 
