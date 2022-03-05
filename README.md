@@ -31,8 +31,9 @@ According to [topendsports](https://www.topendsports.com/world/lists/popular-spo
 
 2. If a company was to use this application, what would be their ML objectives and business objectives? 
 
-ML Objetives. Reducir los falsos positivos. 
-Business objetives. Aumentar el set de herramientas disponibles que le permitan a los apostaodres profesionales o amateurs tomar mejores decisiones
+The ML objectives is to reduce the false positive rate over the output predictions. 
+
+The company's business objectives would be to provide an additional set of tools to help gamblers in decision making process. 
 
 ### 2. Users
 
@@ -42,7 +43,8 @@ Football fans looking for predictions about football game results.
 
 2. How are users going to interact with your application? 
 
-Match results will be displayed in tables containing the opponents in the game and the probability of a win, loss or tie. Additionally, the user could be able to filter games by region, league or by date. 
+Match results will be displayed in tables containing the opponents in the game and the probability of a win, loss or tie. We will display some comboboxes with basic parameters like league, team, date, etc and then it will provide the user with win, draw or lose probabilities for the next match. Also, it will also display recent statistics of both the home and away teams (since football is usually about streaks). The idea is to provide to the client with the best tools to bet. 
+
 
 ### 3. Data Product Architecture Diagram
 
@@ -51,8 +53,6 @@ Match results will be displayed in tables containing the opponents in the game a
 1. Where would you get your data from? How much data would you need? Is there anything publicily available or do you need to build your own dataset? 
 
 The data for our project will be extracted from the [API-FOOTBALL](https://www.api-football.com/documentation-v3), a free API containing Timezones, Countries, Leagues, Teams, Venues, Standings, Fixtures, Injuries, Predictions, Coachs, Players, Transfers, Trophies, Sidelined and Odds. 
-
-*Build our own dataset?* 
 
 ### 5. Modeling
 
