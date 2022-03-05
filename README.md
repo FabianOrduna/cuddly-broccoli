@@ -100,11 +100,11 @@ product?
 
 In order to develop this application we require to use different tools. On this case we are using a Compute Engine for AI so we could have a space with pre installed libraries and ready to use for this purpose. We also need Cloud Storage service for the data retrieved from the API so we could be able to store the information. The use of databases is required so we could retrieve information and query information from there in the future. For the machine learning model we could use the Auto ML Google Service but also a script to perform this. We need to use an orchestrator and a hosting space to place a dashboard to be used by the customer.
 
-    1. To train your model (if you train your own model): do you need GPUs/TPUs or just CPUs? How many machines? For how long?
+    1) To train your model (if you train your own model): do you need GPUs/TPUs or just CPUs? How many machines? For how long?
 
 Since the amount of data for this project is not that much we could perform all the operations with only CPUs in a single machine and for training the models we estimate the time needed is gonna be at most 24 hours but that depends, at the end, in the amount of algorithms we compare and the different configurations. 
 
-    2. To serve your model: can your models make predictions on CPUs?
+    2) To serve your model: can your models make predictions on CPUs?
 
 At the end, when models are ready and based on the amount of data the predictions can be done with CPUs.
 
