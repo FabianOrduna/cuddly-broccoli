@@ -59,20 +59,8 @@ Match results will be displayed, in a website, with tables containing the oppone
 
 The data for our project will be extracted from the [API-FOOTBALL](https://www.api-football.com/documentation-v3), a free API containing Timezones, Countries, Leagues, Teams, Venues, Standings, Fixtures, Injuries, Predictions, Coachs, Players, Transfers, Trophies, Sidelined and Odds.
 
-
-
-
-
-
-
-PONER AQUI LA API DE LA FIFA Y LOS BENEFICIOS... Y MENCIONAR QUE SE HARAN MODELOS CON Y SIN ESTA INFORMACION
-
-
-
-
-
-
-
+The football API will be complemented with player scores that will be obtained from the [FIFA API](https://futdb.app/api/doc). The FIFA team database will give us information about the ranking of team players. This will allow us to make comparisons between goalkeeprs, center, strickers of the local and visitor teams. One model will be trained considering these rankings and another won't to see if this information is relevant for the final model. 
+ 
 ### 5. Modeling
 
 
