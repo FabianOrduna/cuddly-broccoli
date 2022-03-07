@@ -67,25 +67,24 @@ The football API will be complemented with player scores that will be obtained f
 
 **Model**:. 
 
-The objective of the model is simple, we want to determine 3 possible results that are win, draw or lose. How can you determine this result? The answers is easy, you only need to view the goals of each team and that’s all. So, the big challenge is to find the way to determine the winner or loser.
+The objective of the model is simple, we want to determine the probability of three possible results. How can you determine this result? We only need to predict the goals of each team.
 
-So, like any other sport when you want to bet for a winner a lot of times the best tool to take a decision is look forward statistics. In that case, we want to design a model that support its results in the most relevant statistic and show the result through the number of goals of each team, that means  we want to set a model to predict the number of goals for each team in a match. 
+We will also consider:
 
-To achieve our objective we need to consider the follow points:
+1. Home or away condition
+2. Attack and defence scores
+3. Budget
 
-1. We need to consider the condition of visitant or local in a match
-2. The ability of each team is important, and we will consider a score of attack and a score to defend of each team
+We will use the FIFA API as proxy of a team's overall skills. 
 
-For the second point we will explore the FIFA API that consider score for the performance in attack and defense of each team. We consider that is a good reference. The condition of home or away will be a rate that consider the average of total win games under the home condition. 
+We will follow [this repo](https://dashee87.github.io/football/python/predicting-football-results-with-statistical-modelling-dixon-coles-and-time-weighting/) of Mark j. Dixon and Stuart G. Coles  but with a variant on the parameter because we want to use a FIFA API instead of  maximum likelihood estimator.
 
-With those parameters we want to applay the [idea](https://dashee87.github.io/football/python/predicting-football-results-with-statistical-modelling-dixon-coles-and-time-weighting/) of Mark j. Dixon and Stuart G. Coles  but with a variant on the parameter because we want to use a FIFA API instead of  maximum likelihood estimator and we want to compare both of them.
-
-To find the best model in addition to the previous idea we want to explore different algorithms like neural networks, logistic regression and so on to get the best prediction based on several variables available (recent matches, venue, expected goals, etc).
+We want to explore different algorithms like neural networks, logistic regression and so on to get the best prediction based on several available variables  (recent matches, venue, expected goals, etc).
 
 
 **Software**: 
 
-Python to train the models and PHP to display the front-end application. Postgres as data base management system. The idea is use Postgres to conserve results of the prediction model to compare and implement improvements over the last production model. On the other hand, with Postgres we storage the data to train a model and the statistic of the requested matches. 
+Python to train the models and PHP to display the front-end application. Postgres as data base management system. The idea is use Postgres to conserve results of the prediction model to compare and implement improvements over the last production model. On the other hand, with Postgres we store the data to train a model and the statistic of the requested matches. 
 
 **User interface**: 
 
@@ -128,17 +127,17 @@ product?
 
 In order to develop this application we require to use different tools. On this case we are using a Compute Engine for AI so we could have a space with pre installed libraries and ready to use for this purpose. We also need Cloud Storage service for the data retrieved from the API so we could be able to store the information. The use of databases is required so we could retrieve information and query information from there in the future. For the machine learning model we could use the Auto ML Google Service but also a script to perform this. We need to use an orchestrator and a hosting space to place a dashboard to be used by the customer.
 
-    1) To train your model (if you train your own model): do you need GPUs/TPUs or just CPUs? How many machines? For how long?
+2. To train your model (if you train your own model): do you need GPUs/TPUs or just CPUs? How many machines? For how long?
 
 Since the amount of data for this project is not that much we could perform all the operations with only CPUs in a single machine and for training the models we estimate the time needed is gonna be at most 24 hours but that depends, at the end, in the amount of algorithms we compare and the different configurations. 
 
-    2) To serve your model: can your models make predictions on CPUs?
+  a. To serve your model: can your models make predictions on CPUs?
 
-At the end, when models are ready and based on the amount of data the predictions can be done with CPUs.
+   At the end, when models are ready and based on the amount of data the predictions can be done with CPUs.
 
-2. How much compute do you need to develop this application for this project?
+  b. How much compute do you need to develop this application for this project?
 
-As mentioned above we need different tools from GCP and apart from that clarify that use of single CPU with an Intel processor is enough.
+  As mentioned above we need different tools from GCP and apart from that clarify that use of single CPU with an Intel processor is enough.
 
 ### 9. MVP
 
@@ -150,17 +149,17 @@ As an MVP we want to have all the pipeline since the API data retrieval, data tr
 
 We consider there are many different risky aspects for this project:
 
-* Model related:
-    + Amount of data.
-    + Data quality.
-    + Importance of variables to build a functional model.
-    + Availability of data like match coverage.
-    + Model quality and performance. Overfiting vs underfiting vs dummy classifier.
-    + Non-infomative model. Select a bad threshold.
+Model related:
+ - Amount of data.
+ - Data quality.
+ - Importance of variables to build a functional model.
+ - Availability of data like match coverage.
+ - Model quality and performance. Overfiting vs underfiting vs dummy classifier.
+ - Non-infomative model. Select a bad threshold.
      
-* Infraestructure related:
-    + Availability of GCP tools.
-    + Data availability of APIs
+  Infraestructure related:
+  - Availability of GCP tools.
+  - Data availability of APIs
 
 - If your team fails to build the application you want, what do you think might have caused the failure?
 
