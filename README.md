@@ -50,7 +50,8 @@ Match results will be displayed, in a website, with tables containing the oppone
 
 ### 3. Data Product Architecture Diagram
 
-![producto_datos_diag](https://user-images.githubusercontent.com/48302106/156896378-e0467aca-72f3-478c-8cde-5d8a7be12b41.png)
+![diagram](https://user-images.githubusercontent.com/48302106/156964502-aab5ef13-f23c-4aee-8146-6538ee639148.png)
+
 
 
 ### 4. Data
