@@ -131,13 +131,13 @@ In order to develop this application we require to use different tools. On this 
 
 Since the amount of data for this project is not that much we could perform all the operations with only CPUs in a single machine and for training the models we estimate the time needed is gonna be at most 24 hours but that depends, at the end, in the amount of algorithms we compare and the different configurations. 
 
-  a. To serve your model: can your models make predictions on CPUs?
+   a. To serve your model: can your models make predictions on CPUs?
 
-   At the end, when models are ready and based on the amount of data the predictions can be done with CPUs.
+    At the end, when models are ready and based on the amount of data the predictions can be done with CPUs.
 
-  b. How much compute do you need to develop this application for this project?
+   b. How much compute do you need to develop this application for this project?
 
-  As mentioned above we need different tools from GCP and apart from that clarify that use of single CPU with an Intel processor is enough.
+    As mentioned above we need different tools from GCP and apart from that clarify that use of single CPU with an Intel processor is enough.
 
 ### 9. MVP
 
@@ -145,7 +145,7 @@ As an MVP we want to have all the pipeline since the API data retrieval, data tr
 
 ### 10. Pre-mortems
 
-- What are the risky aspects of the project? i. e.g. not enough data, limited compute resources, not knowing how to implement an interface, network latency, inference latency, etc.
+1. What are the risky aspects of the project? i. e.g. not enough data, limited compute resources, not knowing how to implement an interface, network latency, inference latency, etc.
 
 We consider there are many different risky aspects for this project:
 
@@ -165,11 +165,11 @@ Model related:
 
     Based on the knowledge we have about the context of the project we consider the only way we could fail to build the application is related to things we cannot control as data availabilit, infraestrucute problems, data availability/quality. But also a failure can be related with the way we build/train/evaluate the model so we won't be innovating and we would have a low predictive power/model.
 
-- What are the limitations of your application?
+2. What are the limitations of your application?
 
 It's going to work only with the Premier League, it won't consider unexpected events like important players transfered to other teams, team players injuries, etc. It does not use the current competition information to predict, but could be incoporated as an enhancement for a real-time model.
 
-- What are the potential biases of your application?
+3. What are the potential biases of your application?
 
 During a campaign there are several teams that are consider as potential winners like Manchester City, Chelsea, Manchester United so we could never think about a team like Leicester City could be a winner so the model won't be able to predict accurately results involving new teams in the league. If we use the team income as a variable it could include potential biases to the model. The model does not consider the lineup for every match so if a really important player does not play would have the same score as if he plays.
 
