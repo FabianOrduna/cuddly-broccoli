@@ -66,7 +66,7 @@ The football API will be complemented with player scores that will be obtained f
 
 **Model**:. 
 
-The objective of the model is simple, we want to determine 3 possible results that are win, draw or lose. How can you determine this result? The answers is easy, you only need to view the goals of each team and that all. So, the big challenge is to find the way to determine the winner or loser.
+The objective of the model is simple, we want to determine 3 possible results that are win, draw or lose. How can you determine this result? The answers is easy, you only need to view the goals of each team and that’s all. So, the big challenge is to find the way to determine the winner or loser.
 
 So, like any other sport when you want to bet for a winner a lot of times the best tool to take a decision is look forward statistics. In that case, we want to design a model that support its results in the most relevant statistic and show the result through the number of goals of each team, that means  we want to set a model to predict the number of goals for each team in a match. 
 
@@ -77,24 +77,9 @@ To achieve our objective we need to consider the follow points:
 
 For the second point we will explore the FIFA API that consider score for the performance in attack and defense of each team. We consider that is a good reference. The condition of home or away will be a rate that consider the average of total win games under the home condition. 
 
-With those parameters we want to follow of Mark j. Dixon and Stuart G. Coles but with a variant on the parameter because we want to use a FIFA API instead of  maximum likelihood estimator and we want to compare both of them.
+With those parameters we want to applay the [idea](https://dashee87.github.io/football/python/predicting-football-results-with-statistical-modelling-dixon-coles-and-time-weighting/) of Mark j. Dixon and Stuart G. Coles  but with a variant on the parameter because we want to use a FIFA API instead of  maximum likelihood estimator and we want to compare both of them.
 
-The find the best model we want to explore different algorithms like neural networks, logistic regression and so on to get the best prediction based on several variables available (recent matches, venue, expected goals, etc).
-
-
-
-
-
-
-
-ESCRIBIR NUEVAMENTE EL TEXTO DE ABAJO
-
-[JORGE LA VERDAD A ESTO NO LE ENTENDI] We will display main statistics of the teams. This statistics will be saved, the idea is conserving the statistics of the last month into a data table in order to show repeat information for a different client user, that means, same match prediction result will display same statistics. To obtain new statistics that we do not consult previously we will request from the API the necessary information about it. 
-
-
-
-
-
+To find the best model in addition to the previos idea we want to explore different algorithms like neural networks, logistic regression and so on to get the best prediction based on several variables available (recent matches, venue, expected goals, etc).
 
 
 **Software**: Python to train the models and PHP to display the front-end application. Postgres as data base management system. The idea is use Postgres to conserve results of the prediction model to compare and implement improvements over the last production model. On the other hand, with Postgres we storage the data to train a model and the statistic of the requested matches. 
