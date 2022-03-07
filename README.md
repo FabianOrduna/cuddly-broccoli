@@ -79,12 +79,16 @@ For the second point we will explore the FIFA API that consider score for the pe
 
 With those parameters we want to applay the [idea](https://dashee87.github.io/football/python/predicting-football-results-with-statistical-modelling-dixon-coles-and-time-weighting/) of Mark j. Dixon and Stuart G. Coles  but with a variant on the parameter because we want to use a FIFA API instead of  maximum likelihood estimator and we want to compare both of them.
 
-To find the best model in addition to the previos idea we want to explore different algorithms like neural networks, logistic regression and so on to get the best prediction based on several variables available (recent matches, venue, expected goals, etc).
+To find the best model in addition to the previous idea we want to explore different algorithms like neural networks, logistic regression and so on to get the best prediction based on several variables available (recent matches, venue, expected goals, etc).
 
 
-**Software**: Python to train the models and PHP to display the front-end application. Postgres as data base management system. The idea is use Postgres to conserve results of the prediction model to compare and implement improvements over the last production model. On the other hand, with Postgres we storage the data to train a model and the statistic of the requested matches. 
+**Software**: 
 
-**User interface**: Our interface will be user-friendly. we will display some comboboxes with basic parameters like league, team, date, etc and then it will provide the user with win, draw or lose probabilities for the next match. Also, it will also display recent statistics of both the home and away teams (since football is usually about streaks). The idea is to provide to the client with the best tools to bet. 
+Python to train the models and PHP to display the front-end application. Postgres as data base management system. The idea is use Postgres to conserve results of the prediction model to compare and implement improvements over the last production model. On the other hand, with Postgres we storage the data to train a model and the statistic of the requested matches. 
+
+**User interface**: 
+
+Our interface will be user-friendly. we will display some comboboxes with basic parameters like league, team, date, etc and then it will provide the user with win, draw or lose probabilities for the next match. Also, it will also display recent statistics of both the home and away teams (since football is usually about streaks). The idea is to provide to the client with the best tools to bet. 
 
 **Scope**: Premier League matches. 
 
@@ -100,11 +104,6 @@ We will evaluate if the percentage of false positives is strictly smaller than a
 2. How would you evaluate whether your application satisfies its objectives?
 
 We would compare our performance against that of profesional betting houses. From the Football API we can retrieve betting odds from several webpages. If we can manage to get data of the results of professional gamblers, we might compare against them as well.
-
-
-
-SERIA BUENO VER SI TIENEN APIS ESAS CASAS DE APUESTAS. PONER AQUI EL LINK AL API. Y EXPLICAR COMO SERÍA EL PROCESO DE COMPARAR.
-
 
 
 ### 7. Inference
@@ -150,17 +149,17 @@ As an MVP we want to have all the pipeline since the API data retrieval, data tr
 
 We consider there are many different risky aspects for this project:
 
-    * Model related:
-        Amount of data.
-        Data quality.
-        Importance of variables to build a functional model.
-        Availability of data like match coverage.
-        Model quality and performance. Overfiting vs underfiting vs dummy classifier.
-        Non-infomative model. Select a bad threshold.
+* Model related:
+    + Amount of data.
+    + Data quality.
+    + Importance of variables to build a functional model.
+    + Availability of data like match coverage.
+    + Model quality and performance. Overfiting vs underfiting vs dummy classifier.
+    + Non-infomative model. Select a bad threshold.
      
-     * Infraestructure related:
-        Availability of GCP tools.
-        Data availability of APIs
+* Infraestructure related:
+    + Availability of GCP tools.
+    + Data availability of APIs
 
 - If your team fails to build the application you want, what do you think might have caused the failure?
 
