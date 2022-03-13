@@ -44,15 +44,15 @@ The season data was organized by season year, match date, match id, local team n
 The players statistics data was organized by page, season, player_id, player_name, age, height, weight, injured, team_id, appearences, minutes, position, rating, shots, goals, assists, passes_accuracy, total_duels and won_duels. In order to get the information we considered that:
 
 - This endpoint returns the players for whom the profile and statistics data are available. Note that it is possible that a player has statistics for 2 teams in the same season in case of transfers. In that case the key is team_id and player_id.
-- 
+ 
 - The statistics are calculated according to the team id, league id and season.
-- 
+
 - The players id are unique in the API.
-- 
+
 - This endpoint uses a pagination system, you can navigate between the different pages thanks to the page parameter.
-- 
+
 - The season 2019 has 33 pages, season 2020 has 37 pages and season 2021 has 39 pages.
-- 
+
 - One request per page, each of one has 20 different player's statistics.
 
 ### Load
@@ -100,7 +100,7 @@ match table preview:
 | 5 | 2019 | datetime.date(2019, 8, 10) | 'Crystal Palace' | 'Everton' | 0 | 0 |
 | 6 | 2019 | datetime.date(2019, 8, 11) | 'Leicester' | 'Wolves' | 0 | 0 |
 | 7 | 2019 | datetime.date(2019, 8, 10) | 'Watford' | 'Brighton' | 0 | 3 |
-| 8 | 2019 | datetime.date(2019, 8, 10)- | 'Tottenham' | 'Aston Villa' | 3 | 1 |
+| 8 | 2019 | datetime.date(2019, 8, 10) | 'Tottenham' | 'Aston Villa' | 3 | 1 |
 | 9 | 2019 | datetime.date(2019, 8, 11) | 'Newcastle' | 'Arsenal' | 0 | 1 |
 | 10 | 2019 | datetime.date(2019, 8, 11) | 'Manchester United' | 'Chelsea' | 4 | 0 |
 
