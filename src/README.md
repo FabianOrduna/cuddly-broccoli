@@ -103,6 +103,7 @@ match table preview:
 | 8 | 2019 | datetime.date(2019, 8, 10) | 'Tottenham' | 'Aston Villa' | 3 | 1 |
 | 9 | 2019 | datetime.date(2019, 8, 11) | 'Newcastle' | 'Arsenal' | 0 | 1 |
 | 10 | 2019 | datetime.date(2019, 8, 11) | 'Manchester United' | 'Chelsea' | 4 | 0 |
+| ... | ... | ... | ... | ... | ... | ... |
 
 ### References
 - [SQL connect.](https://cloud.google.com/sdk/gcloud/reference/sql/connect)
