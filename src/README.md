@@ -41,18 +41,70 @@ Our transformation starts by transforming our request JSONs to lists of dictiona
 
 The season data was organized by season year, match date, match id, local team name, local team id, away team name, away team id, local goals and away goals. 
 
-The players data was organized by local team id, local team players id, away team id, away team players id and ratings.
+The players statistics data was organized by page, season, player_id, player_name, age, height, weight, injured, team_id, appearences, minutes, position, rating, shots, goals, assists, passes_accuracy, total_duels and won_duels. In order to get the information we considered that:
+
+- This endpoint returns the players for whom the profile and statistics data are available. Note that it is possible that a player has statistics for 2 teams in the same season in case of transfers. In that case the key is team_id and player_id.
+- 
+- The statistics are calculated according to the team id, league id and season.
+- 
+- The players id are unique in the API.
+- 
+- This endpoint uses a pagination system, you can navigate between the different pages thanks to the page parameter.
+- 
+- The season 2019 has 33 pages, season 2020 has 37 pages and season 2021 has 39 pages.
+- 
+- One request per page, each of one has 20 different player's statistics.
 
 ### Load
 
-- Load
-    - Error handling
-    - Sinks
-        - Database
-        - Data lake
-        - Web server / application
+We used Google Cloud SQL to store our database, the name of our instance is "cuddly-broccoli-instance". To stablish the connection to SQL service we used the sqlalchemy library and the following engine url create code: 
 
-- [ ]  Include a README in your `src` folder explaining:
-    - [ ]  Whether you are performing an ELT or ETL job
-    - [ ]  Which GCP resources you are using (**Google Cloud SQL, Compute Engine, Vertex AI, etc)** and the names of each instance
-    - [ ]  A brief summary of the transformations you are performing
+```
+host_args = db_host.split(":")
+if len(host_args) == 1:
+    db_hostname = db_host
+    db_port = 5432
+elif len(host_args) == 2:
+    db_hostname, db_port = host_args[0], int(host_args[1])
+
+conn = sqlalchemy.create_engine(
+    # Equivalent URL:
+    # postgresql+pg8000://<db_user>:<db_pass>@<db_host>:<db_port>/<db_name>
+    sqlalchemy.engine.url.URL.create(
+        drivername="postgresql+pg8000",
+        username=db_user,  
+        password=db_pass,  
+        host=db_hostname,  
+        port=db_port,  
+        database=db_name  
+    )
+)
+```
+
+The structure requeries to pass the user, password, host ip, port and database name (*cuddly-broccoli-db*). 
+
+Once the connection was stablished and the database created, we had to create two tables and load the previously requested data.
+
+We created the tables *match* and **COMPLETAR** with the Table() function. *match* tiene las columnas id, season, match_date, local_team, away_team, local_goals and away_goals. Then, data was loaded with the insert_data(function). 
+
+These tables are visible using the select() command in python. 
+
+match table preview:
+
+| id | season | match_date | local_team | away_team | local_goals | away_goals |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 2019 | datetime.date(2019, 8, 9) | 'Liverpool' | 'Norwich' | 4 | 1 |
+| 2 | 2019 | datetime.date(2019, 8, 10) | 'West Ham' | 'Manchester City' | 0 | 5 |
+| 3 | 2019 | datetime.date(2019, 8, 10) | 'Bournemouth' | 'Sheffield Utd' | 1 | 1 |
+| 4 | 2019 | datetime.date(2019, 8, 10) | 'Burnley' | 'Southampton' | 3 | 0 |
+| 5 | 2019 | datetime.date(2019, 8, 10) | 'Crystal Palace', 'Everton' | 0 | 0 |
+| 6 | 2019 | datetime.date(2019, 8, 11) | 'Leicester' | 'Wolves' | 0 | 0 |
+| 7 | 2019 | datetime.date(2019, 8, 10) | 'Watford' | 'Brighton' | 0 | 3 |
+| 8 | 2019 | datetime.date(2019, 8, 10)- | 'Tottenham' | 'Aston Villa' | 3 | 1 |
+| 9 | 2019 | datetime.date(2019, 8, 11) | 'Newcastle' | 'Arsenal' | 0 | 1 |
+| 10 | 2019 | datetime.date(2019, 8, 11) | 'Manchester United' | 'Chelsea' | 4 | 0 |
+
+### References
+- [SQL connect.](https://cloud.google.com/sdk/gcloud/reference/sql/connect)
+- [Delete in SQL.](https://docs.sqlalchemy.org/en/14/core/tutorial.html#deletes)
+- [Connect App Engine.](https://cloud.google.com/sql/docs/postgres/connect-app-engine-standard#private-ip_1)
