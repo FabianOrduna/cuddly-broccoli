@@ -1,6 +1,6 @@
 # ETL Process
 
-We decided to do an ETL process in order to have our databases in a normalized way ready to directly input to the machine learning model. The ETL script can be found in this folder by the name of **api.ipynb**.
+We decided to go through an ETL process in order to have our database ready for direct input into machine learning models in a standardized way. The ETL script can be found in this folder by the name of **api.ipynb**.
 
 ### Step by step:
 
@@ -16,7 +16,7 @@ Our ETL process was done using a Vertex AI instance named "api-football". These 
 * pg8000
 * pymysql
 
-- Extraction
+### Extraction
 
 Passwords and connection parameters are loaded as environment variables using a yaml file.
 
@@ -30,16 +30,21 @@ db_name = config["db_name"]
 db_host = config["db_host"]
 ```
 
-- Transform
-    - Shape
-        - [Schema on write](https://www.techopedia.com/definition/30899/schema-on-write)
-            - Reduce/Add columns
-            - Data types
-        - Columnar to row based
-    - Data quality
-    - PII/Masking
-    - [Normalization](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description)
-    - MLOPs
+The requests were build based on the [Python sample extraction scripts](https://www.api-football.com//documentation-v3#section/Sample-Scripts/Python) of API we used. This request needs to specify the URL of the API, a querystring which is sort of a filter, headers where we specify our API key, and the GET method. In the end this information is downloaded in a JSON format.
+
+This procedure was repeated for season games and player information.
+
+
+### Transform
+
+Our transformation starts by transforming our request JSONs to lists of dictionaries. 
+
+The season data was organized by season year, match date, match id, local team name, local team id, away team name, away team id, local goals and away goals. 
+
+The players data was organized by local team id, local team players id, away team id, away team players id and ratings.
+
+### Load
+
 - Load
     - Error handling
     - Sinks
