@@ -97,7 +97,7 @@ match table preview:
 | 2 | 2019 | datetime.date(2019, 8, 10) | 'West Ham' | 'Manchester City' | 0 | 5 |
 | 3 | 2019 | datetime.date(2019, 8, 10) | 'Bournemouth' | 'Sheffield Utd' | 1 | 1 |
 | 4 | 2019 | datetime.date(2019, 8, 10) | 'Burnley' | 'Southampton' | 3 | 0 |
-| 5 | 2019 | datetime.date(2019, 8, 10) | 'Crystal Palace', 'Everton' | 0 | 0 |
+| 5 | 2019 | datetime.date(2019, 8, 10) | 'Crystal Palace' | 'Everton' | 0 | 0 |
 | 6 | 2019 | datetime.date(2019, 8, 11) | 'Leicester' | 'Wolves' | 0 | 0 |
 | 7 | 2019 | datetime.date(2019, 8, 10) | 'Watford' | 'Brighton' | 0 | 3 |
 | 8 | 2019 | datetime.date(2019, 8, 10)- | 'Tottenham' | 'Aston Villa' | 3 | 1 |
