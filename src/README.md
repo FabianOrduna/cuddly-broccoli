@@ -105,6 +105,15 @@ match table preview:
 | 10 | 2019 | datetime.date(2019, 8, 11) | 'Manchester United' | 'Chelsea' | 4 | 0 |
 | ... | ... | ... | ... | ... | ... | ... |
 
+
+
+
+| id | season | player_id | player_name | age | height | weight | injured | team_id | minutes | position | rating | shots | goals | assist | total_duels | won_duels |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| x | x | x | x | x | x | x | x | x | x | x | x | x | x | x | x | x |
+| ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
+
+
 ### References
 - [SQL connect.](https://cloud.google.com/sdk/gcloud/reference/sql/connect)
 - [Delete in SQL.](https://docs.sqlalchemy.org/en/14/core/tutorial.html#deletes)
