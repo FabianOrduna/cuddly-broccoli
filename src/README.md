@@ -85,7 +85,7 @@ The structure requeries to pass the user, password, host ip, port and database n
 
 Once the connection was stablished and the database created, we had to create two tables and load the previously requested data.
 
-We created the tables *match* and **COMPLETAR** with the Table() function. *match* tiene las columnas id, season, match_date, local_team, away_team, local_goals and away_goals. Then, data was loaded with the insert_data(function). 
+We created the tables *match* and *statistics* with the Table() function. *match* tiene las columnas id, season, match_date, local_team, away_team, local_goals and away_goals. Then, data was loaded with the insert_data(function). 
 
 These tables are visible using the select() command in python. 
 
@@ -110,7 +110,9 @@ match table preview:
 
 | id | season | player_id | player_name | age | height | weight | injured | team_id | minutes | position | rating | shots | goals | assist | total_duels | won_duels |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| x | x | x | x | x | x | x | x | x | x | x | x | x | x | x | x | x |
+| 1 | 2019 | 160 | 'M. Vorm' | 38 | False | 47 | 0 | 0 | 'Goalkeeper' | None | None | 0 | None | None | None | None |
+| 2 | 2019 | 642 | 'S. Agüero' | 33 | False | 50 | 24 | 1456 | 'Attacker' | 7.160869 | 76 | 16 | 3 | 79.0 | 114 | 43 |
+| 3 | 2019 | 2795 | 'G. Sigurosson' | 33 | False | 45 | 35 | 2562 | 'Midfieder' | 6.854285 | 46 | 2 | 3 | 82.0 | 250 | 103 |
 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
 
 
