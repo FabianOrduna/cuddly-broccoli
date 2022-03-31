@@ -1,4 +1,4 @@
-# cuddly-broccoli
+# __Insert hot,sexy title__
 
 ## Team members
 
@@ -20,8 +20,6 @@ Why are we awesome?
 - 🖥️ Because Fabian is a software engineer with experience in web development, distributed systems and can hack your phone if he wants.
 
 Together we can learn about each other, and we can solve many kinds of problems merging our skills as one brain to conquer Data Product Architecture.
-
-![image](https://user-images.githubusercontent.com/22153745/156893460-d9d8e809-653d-4e13-8f56-72ad2d2f0ec0.png)
 
 # Project Proposal 
 
@@ -110,7 +108,9 @@ We would compare our performance against that of profesional betting houses. Fro
 
 1. Will you be doing online prediction or batch prediction or a combination of both?
 
-We intend to do batch prediction, however we might do online prediction if we can manage to.
+We intend to do batch prediction. Our beta product will need weekly data, so we don't need to orchestratre a very sophisticated online prediction.
+However we might do online prediction if we can manage to, as to provide pre-match and through-match prediction.
+
 
 2. Will the inference run on-device or through a server?
 
@@ -149,7 +149,7 @@ As an MVP we want to have all the pipeline since the API data retrieval, data tr
 
  We consider there are many different risky aspects for this project:
 
- Model related:
+  Model related:
   - Amount of data.
   - Data quality.
   - Importance of variables to build a functional model.
@@ -160,6 +160,9 @@ As an MVP we want to have all the pipeline since the API data retrieval, data tr
    Infraestructure related:
    - Availability of GCP tools.
    - Data availability of APIs
+
+In this case, if we have a low-performance model we will be in serious problems. Our potential clients might prefer to trust their guts rather than buy our data product. 
+It is important to mention that we have the best available data, but if we want to scale up our product we will need to invest more in the API (or do tedious webscrapping).
 
 2. If your team fails to build the application you want, what do you think might have caused the failure?
 
