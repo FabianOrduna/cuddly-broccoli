@@ -2,12 +2,12 @@
 
 ## Team members
 
-| Name  | Email | Clave única | Github handler
-| :-------------: | :-------------: | :-------------: | :-------------:
-| Fabián Orduña Ferreira  | fabian.orduna@itam.mx  | 159001  | FabianOrduna 
-| Nelson Gil Vargas  | ngilvarg@itam.mx  | 203058  | nelsonalejandrov
-| Jorge Garcia  | jgarc401@itam.mx  | 202945  | jgarciad
-| Miguel Lerdo de Tejada  | miguel.lerdodetejada@itam.mx  | 168450  | MikeLdT
+| Name  | Email | Clave única | Github handler | Website
+| :-------------: | :-------------: | :-------------: | :-------------: | :-------------:
+| Fabián Orduña Ferreira  | fabian.orduna@itam.mx  | 159001  | FabianOrduna |
+| Nelson Gil Vargas  | ngilvarg@itam.mx  | 203058  | nelsonalejandrov | [Nelson Portfolio](https://nelsonalejandrov.github.io/Nelson_Portfolio/)
+| Jorge Garcia  | jgarc401@itam.mx  | 202945  | jgarciad |
+| Miguel Lerdo de Tejada  | miguel.lerdodetejada@itam.mx  | 168450  | MikeLdT |
 
 
 ### Hi there 👋
