@@ -23,7 +23,8 @@ import numpy as np
 import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 import pickle
-
+from google.cloud import storage
+import os 
 
 # Pipeline, Gridsearch, train_test_split
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -39,56 +40,32 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn import svm
 from sklearn.neural_network import MLPClassifier
 
-# Modificar directorio
-with open('../../../../footballYaml.yml') as f:
-    config = yaml.load(f, Loader=yaml.FullLoader)
+# Functions
 
-football_key = config['football_key']
-db_user = config["db_user"]
-db_pass = config["db_pass"]
-db_name = config["db_name"]
-db_host = config["db_host"]
+def create_bucket(bucket_name):
+    """Taken from: https://www.thecodebuzz.com/create-google-cloud-gcp-storage-bucket-python/"""
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    try:
+    #bucket.storage_class = "Standard Storage"
+        new_bucket = storage_client.create_bucket(bucket, location="us-central1")
+ 
+        print("Created bucket successfully {} in location {}".format(new_bucket.name, new_bucket.location))
+    except: 
+        print("Bucket already exists")
 
-# Defining the connection to sql
-host_args = db_host.split(":")
-if len(host_args) == 1:
-    db_hostname = db_host
-    db_port = 5432
-elif len(host_args) == 2:
-    db_hostname, db_port = host_args[0], int(host_args[1])
+def upload_blob(bucket_name, source_file_name, destination_blob_name):
+    """Taken from: https://www.thecodebuzz.com/python-upload-files-download-files-google-cloud-storage/ """
+    """Uploads a file to the google storage bucket."""
+    
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
 
-conn = sqlalchemy.create_engine(
-    # Equivalent URL:
-    # postgresql+pg8000://<db_user>:<db_pass>@<db_host>:<db_port>/<db_name>
-    sqlalchemy.engine.url.URL.create(
-        drivername="postgresql+pg8000",
-        username=db_user,  # e.g. "my-database-user"
-        password=db_pass,  # e.g. "my-database-password"
-        host=db_hostname,  # e.g. "127.0.0.1"
-        port=db_port,  # e.g. 5432
-        database=db_name  # e.g. "my-database-name"
-    )
-)
+    blob.upload_from_filename(source_file_name)
 
-# Establish connection
-conn.connect()
-
-metadata = MetaData(bind=None)
-table = Table(
-    'match_fof', 
-    metadata, 
-    autoload=True, 
-    autoload_with=conn
-)
-
-metadata = MetaData(bind=None)
-table_stats = Table(
-    'statistics_f1', 
-    metadata, 
-    autoload=True, 
-    autoload_with=conn
-)
-
+    print("File {} uploaded to Storage Bucket with Bob name {} successfully .".format(source_file_name, destination_blob_name)) 
+    
 def readDataFromSeason(table, connection, season, clean):
     if clean == True:
         stmt = select(table.columns).where(and_(table.columns.season == season, table.columns.local_goals != None))
@@ -184,6 +161,89 @@ def FeatureEngineer(anio,partialRes):
 
     return featureEng
 
+def ajustaPipeline(grid_param_in, X_train_in,y_train_in):
+    #transformador de columnas
+    
+    col_transformer = ColumnTransformer(
+                    transformers=[
+                        ('onehot', OneHotEncoder(handle_unknown = 'ignore'), ["local","visita"] )],
+                    remainder='drop',
+                    n_jobs=-1
+                    )   
+    
+    pipe = Pipeline([('encoder', col_transformer), ("classifier", RandomForestClassifier())])
+    # se crea gridsearch sobre pipeline
+    gridsearch = GridSearchCV(pipe, param_grid=grid_param_in, cv=5, verbose=0,n_jobs=-1, scoring='accuracy') # Fit grid search
+
+    start_time = time.time()
+    best_model = gridsearch.fit(X_train_in,y_train_in)
+    total_time = time.time() - start_time
+    return best_model, total_time
+
+def printmodelresult(mensaje, modelo,tiempo, X_t, y_t):
+    print("====================================")
+    print(mensaje)
+    print("====================================")
+    accuracy = modelo.score(X_t, y_t)
+    print("tiempo estimado [segundos]")
+    print(tiempo)
+    print("Accuracy")
+    print(accuracy)
+    # creating a confusion matrix
+    #plot_confusion_matrix(modelo, X_t, y_t)
+    y_predict = modelo.predict(X_t)
+    print(classification_report(y_t, y_predict))
+
+# Modificar directorio
+with open('../../../../footballYaml.yml') as f:
+    config = yaml.load(f, Loader=yaml.FullLoader)
+
+football_key = config['football_key']
+db_user = config["db_user"]
+db_pass = config["db_pass"]
+db_name = config["db_name"]
+db_host = config["db_host"]
+
+# Defining the connection to sql
+host_args = db_host.split(":")
+if len(host_args) == 1:
+    db_hostname = db_host
+    db_port = 5432
+elif len(host_args) == 2:
+    db_hostname, db_port = host_args[0], int(host_args[1])
+
+conn = sqlalchemy.create_engine(
+    # Equivalent URL:
+    # postgresql+pg8000://<db_user>:<db_pass>@<db_host>:<db_port>/<db_name>
+    sqlalchemy.engine.url.URL.create(
+        drivername="postgresql+pg8000",
+        username=db_user,  # e.g. "my-database-user"
+        password=db_pass,  # e.g. "my-database-password"
+        host=db_hostname,  # e.g. "127.0.0.1"
+        port=db_port,  # e.g. 5432
+        database=db_name  # e.g. "my-database-name"
+    )
+)
+
+# Establish connection
+conn.connect()
+
+metadata = MetaData(bind=None)
+table = Table(
+    'match_fof', 
+    metadata, 
+    autoload=True, 
+    autoload_with=conn
+)
+
+metadata = MetaData(bind=None)
+table_stats = Table(
+    'statistics_f1', 
+    metadata, 
+    autoload=True, 
+    autoload_with=conn
+)
+
 todos_features = None
 
 seasons_TRAIN = [2016,2017,2018,2019]
@@ -205,20 +265,6 @@ for year in season_TEST:
         test_features = fe_year
     else:
         test_features = test_features + fe_year
-        
-def imprimeResultadosModelo(mensaje, modelo,tiempo, X_t, y_t):
-    print("====================================")
-    print(mensaje)
-    print("====================================")
-    accuracy = modelo.score(X_t, y_t)
-    print("tiempo estimado [segundos]")
-    print(tiempo)
-    print("Accuracy")
-    print(accuracy)
-    # creating a confusion matrix
-    #plot_confusion_matrix(modelo, X_t, y_t)
-    y_predict = modelo.predict(X_t)
-    print(classification_report(y_t, y_predict))
     
 columnas = ["temporada","local","local_goles","local_goles_recibidos","locaL_dif_goles", "local_jornadas_jugadas", "visita","visita_goles","visita_goles_recibidos","visita_dif_goles", "visita_jornadas_jugadas", "ganador"]
 
@@ -233,26 +279,6 @@ X_test = datos_test.iloc[: , 1:-1]
 y_test = datos_test.iloc[: , -1]
 
 # Modeling
-
-def ajustaPipeline(grid_param_in, X_train_in,y_train_in):
-    #transformador de columnas
-    
-    col_transformer = ColumnTransformer(
-                    transformers=[
-                        ('onehot', OneHotEncoder(handle_unknown = 'ignore'), ["local","visita"] )],
-                    remainder='drop',
-                    n_jobs=-1
-                    )   
-    
-    pipe = Pipeline([('encoder', col_transformer), ("classifier", RandomForestClassifier())])
-    # se crea gridsearch sobre pipeline
-    gridsearch = GridSearchCV(pipe, param_grid=grid_param_in, cv=5, verbose=0,n_jobs=-1, scoring='accuracy') # Fit grid search
-
-    start_time = time.time()
-    best_model = gridsearch.fit(X_train_in,y_train_in)
-    total_time = time.time() - start_time
-    return best_model, total_time
-
 # SVM
 
 grid_param_svm = [{"classifier": [SVC(kernel='linear', probability=True, random_state=0)],
@@ -261,9 +287,18 @@ grid_param_svm = [{"classifier": [SVC(kernel='linear', probability=True, random_
 
 svm_model, tiempo_svm = ajustaPipeline(grid_param_svm, X_train,y_train)
 
-imprimeResultadosModelo("Modelo de SVM",svm_model,tiempo_svm,X_test, y_test)
+printmodelresult("Modelo de SVM",svm_model,tiempo_svm,X_test, y_test)
 
-# Model selection
+# Creating pkl file
 
-with open('svm.pkl', 'wb') as handle:
+with open('svm_model.pkl', 'wb') as handle:
     pickle.dump(svm_model, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        
+new_bucket = "cuddlybroccoli_model"
+create_bucket(new_bucket)
+    
+upload_blob(new_bucket,"svm_model.pkl","model.pkl")
+
+# Delete pkl from vm
+
+os.remove("./svm_model.pkl")
