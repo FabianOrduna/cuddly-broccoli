@@ -207,39 +207,23 @@ On this case, we used 6 different algorithms with all the hiperparameters combin
 | Perceptron | 9 | 
 | Total | 519 | 
 
-
 ### ML metrics
-
+ 
+To choose the best model we need to compare the metrics results between the best algorithms trained with the GridSearch. The metric values are listed in the table
+ 
+| Algorithm  | Acurracy | Precision: local | Precision: away | Precision: draw |
+| --- | --- | --- | --- | --- |
+| LR | 0.498 | 0.49 | 0.55 | 0.31 |
+| KNN | 0.480 | 0.45 | 0.61 | 0 |
+| **SVM** | 0.5 | 0.47 | 0.61 | 0.43 |
+| RFC | 0.476 | 0.45 | 0.62 | 0 |
+| GBC | 0.471 | 0.45 | 0.6 | 0.11 |
+| Perceptron | 0.476 | 0.45 | 0.58 | 0 |
+ 
+ 
 ### Trade-offs
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+Based on the analysis and results we consider an improvement on the draw predictions is required. We think this happened because there is not an important amount of matches with this kind of results. To try to mitigate this problem, the rating variable could be incorporated but this implies a transformation to the feature engineering process. On the other hand, the local condition could represent some advantage while playing a game, would be interesting to add these variables to the train data set. Finally, the implicit information contained in odds can add value to the modeling process, so this could be a new variable to consider.
 
 
 
