@@ -172,8 +172,77 @@ def FeatureEngineer(anio,partialRes):
 
 ### Algorithm
 
+Since this is a clasification problem, we considered different algorithms. Starting with the simplest ones like logistic regression but also more complex like Perceptron.
+
+On this case, the following algoritms were used:
+* Logistic Regression (LR)
+* Nearest Neightbouts (KNN)
+* Support Vector Machines (SVM)
+* Random Forest Classifier (RFC)
+* Gradient Boosting Classifier (GBC)
+* Perceptron
+
 ### Experiments
+
+To understand the different experiments is important to know the next concepts:
+
+* **Training and testing data:** since we are using data which contains implicit time values we decided to use 2019 and 2020 seasons to train the models and, the 2021 season to test.
+* **Column transformer**: the local and away teams names were used to train the model. On this case, the model training requires to have this values as numerical ones, that's the reason why we use a one hot encoder to transform those categorical values.
+* **Algorithms and hiperparameters**: As we mentioned above, different algorithms were used to find the best model and we assigned some hiperparameters to look at.
+* **Cross validation**: since the Premier League has a finite amount of teams and matches during a season was necessary to use this technique to split the train set into two different sets. The cross validations was done 5 times with a 80-20% data split. This helps us to avoid statistical bias but also to improve the model performance. 
+* **Pipeline:** it uses the column transformer mentioned above and start training a model with a set of fixed hiperparameters.
+* **GridSearch:** it receives an array with the algorithm and different hiperparameters. For each combination of the different hiperparameters it sends the values to a pipeline to start the input data transformation and the model training. At the end of the iterations it picks the best model based on the target model metric.
+
+
+On this case, we used 6 different algorithms with all the hiperparameters combinations as you can see on the table below.
+
+**Algorithms and hiperparameters combinations**
+| Algorithm | Hiperparameters |
+| --- | --- |
+| LR | 40 | 
+| KNN | 60 | 
+| SVM | 14 | 
+| RFC | 324 | 
+| GBC | 72 | 
+| Perceptron | 9 | 
+| Total | 519 | 
+| --- | --- |
+
 
 ### ML metrics
 
 ### Trade-offs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
