@@ -206,7 +206,6 @@ On this case, we used 6 different algorithms with all the hiperparameters combin
 | GBC | 72 | 
 | Perceptron | 9 | 
 | Total | 519 | 
-| --- | --- |
 
 
 ### ML metrics
