@@ -79,17 +79,96 @@ Some other characteristics important about our data:
 
 ### Feature engineering
 
-que hicimos 
+Our feature engineering process is based on the match dataframe consisted in two steps: 
 
-tomamos solo la tabla de match, construimos la variable objetivo (local, visita, empata) lo que queremos predecir con el modelo.
+* **Creating the target variable:** this feature has 3 categories: local, away or draw. For this, we computed the difference between the local and away team goals by match. If this difference is possitive we assign "local" to the target variable, if it is negative we assign "away" and if the difference is zero we assign "draw". This was done using the following function: 
 
-transformar las variables iniciales, para cada equipo por partido añadimos el total de goles que anotó ese equipo hasta un partido anterior, también el total de goles que recibio hasta un partido anterior, y la diferencia entre estos dos valores. Es importante señalar que no incorporamos el numero de goles de ese partido en la prediccion para evitar data leakage. el numero de partidos previos jugados. 
+* **Computing the accumulated goals by team:** we sorted matches by date for each season and calculated the accumulated number of goals until the previous match. These goals are separated by: scored, received and the difference between them. It is important to notice that we don't consider the goals of that game to compute the sum to prevent data leakage, since the difference of goals is used to calculate the target variable.
 
-como lo hicimos
+We created this pair of functions: 
 
-para la variable resultado los valores posibles local, visita o empate se obtienen al restar los goles del local menos los de visitante, si esta diferencia es positiva se asigna "local", si es cero se asigna "empate" y si es negativa se asigna el valor "visitante". 
+```python
+def sumaGoles(golesEquipo, totalPartidos):
+    favor = 0
+    contra = 0
+    diferencia = 0
+    for i in range(totalPartidos):
+        #print("sumando el partido "+str(i))
+        favor+=golesEquipo[i][0]
+        contra+=golesEquipo[i][1]
+        diferencia+=golesEquipo[i][2]
+    return [favor, contra, diferencia]
+```
 
-for accumulated data: ordenamos los partidos por fecha, para cada partido se añadieron los goles 
+```python
+def FeatureEngineer(anio,partialRes):
+    equipos = {} # para contar los partidos jugados por equipo
+    totalGoals = {} # primero a favor, luego en contra, luego diferencia
+    for res in partialRes:
+        if(res[1]==anio and res[5] != None): # != None validdation required for non played matches
+            #datos de equipos
+            local = res[3]
+            visita = res[4]
+
+            #datos de goles
+            goles_local = res[5]
+            goles_visita = res[6]
+
+            if(not (local in equipos)):
+                equipos[local] = 0
+
+            if(not (visita in equipos)):
+                equipos[visita] = 0
+
+            #logica para guardar los goles por equipo y el acumulado
+            if(local in totalGoals):
+                totalGoals[local].append([goles_local,goles_visita, goles_local-goles_visita])
+            else:
+                totalGoals[local] = [[goles_local,goles_visita, goles_local-goles_visita]]
+
+            if(visita in totalGoals):
+                totalGoals[visita].append([goles_visita, goles_local, goles_visita-goles_local])
+            else:
+                totalGoals[visita] = [[goles_visita, goles_local, goles_visita-goles_local]]
+
+
+    featureEng = []
+
+    for partido in partialRes:
+        if (partido[1]==anio and partido[5] != None): # != None validdation required for non played matches
+            #print(partido)
+            local = partido[3]
+            visita = partido[4]
+            goles_acumulados_local = sumaGoles(totalGoals[local], equipos[local])
+            goles_acumulados_visita = sumaGoles(totalGoals[visita], equipos[visita])
+            
+            #ahora se define si gana el local, el visita o empate
+            resPredictor = 'empate'
+            if(partido[5]>partido[6]):
+                resPredictor = 'local'
+            else:
+                if(partido[5]<partido[6]):
+                    resPredictor = 'visita'
+            
+            featureEng.append([partido[1],
+                        local,
+                        goles_acumulados_local[0],
+                        goles_acumulados_local[1],
+                        goles_acumulados_local[2],
+                        equipos[local],#partidos jugados hasta el momento              
+                        visita,
+                        goles_acumulados_visita[0],
+                        goles_acumulados_visita[1],
+                        goles_acumulados_visita[2],
+                        equipos[visita],#partidos jugados hasta el momento  
+                        resPredictor]
+                             )
+            equipos[local] = equipos[local]+1
+            equipos[visita] = equipos[visita]+1
+
+
+    return featureEng
+```
 
 ### Algorithm
 
