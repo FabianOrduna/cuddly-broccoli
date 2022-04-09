@@ -1,4 +1,4 @@
-# __Insert hot,sexy title__
+# Easy money betting soccer
 
 ## Team members
 
@@ -175,6 +175,10 @@ It is important to mention that we have the best available data, but if we want 
 3. What are the potential biases of your application?
 
    During a campaign there are several teams that are consider as potential winners like Manchester City, Chelsea, Manchester United so we could never think about a team like Leicester City could be a winner so the model won't be able to predict accurately results involving new teams in the league. If we use the team income as a variable it could include potential biases to the model. The model does not consider the lineup for every match so if a really important player does not play would have the same score as if he plays.
+   
+### ML Model
+
+Magic is not in our dictionary but machine learning is. This technique is used to infer some event in this case a soccer game results. You can find the requiere steps to achive this goal in this section. We explain how to use the data, how to process it, the way to train the models to find the best. It will allow us to dicover improvement areas to do better predictions. 
 
 ### References: 
 
