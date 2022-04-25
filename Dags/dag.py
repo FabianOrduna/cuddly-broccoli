@@ -18,7 +18,7 @@ params = {
 
 dag = DAG(
     dag_id='cuddly_broccoli_dag',
-    schedule_interval='0 0 * * *',
+    schedule_interval='0 0 * * 1,7',
     start_date=days_ago(2),
     tags=['bash', 'python', 'lab8', 'demo'],
     max_active_runs=1
