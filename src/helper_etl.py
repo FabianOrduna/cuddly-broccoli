@@ -1,12 +1,21 @@
+import sys
+import subprocess
+
+# implement pip as a subprocess:
+#subprocess.check_call([sys.executable, '-m', 'pip', 'install', 
+#'pg8000<=1.16.5'])
 import yaml
 import requests
 import sqlalchemy
 from sqlalchemy import Table, Column, Integer, String, MetaData, Date, Boolean, create_engine, Float, and_
+#from sqlalchemy.engine import make_url
 from sqlalchemy.sql import select, insert, delete
+from datetime import date
+#import pg8000
 
-global_yaml = 'yaml.yml'
+#global_yaml = 'yaml.yml'
 
-def season_data(year):
+def season_data(year,global_yaml):
     with open(global_yaml) as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
     football_key = config['football_key']
@@ -31,7 +40,7 @@ def season_data(year):
                                "away_goals":row["goals"]["away"]})
     return season_data
 
-def player_stats(year, page):
+def player_stats(year, page,global_yaml):
     with open(global_yaml) as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
     football_key = config['football_key']
@@ -69,7 +78,7 @@ def player_stats(year, page):
         
     return statistic_data
 
-def database_connection():
+def database_connection(global_yaml):
     with open(global_yaml) as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
     db_user = config["db_user"]
@@ -82,24 +91,29 @@ def database_connection():
         db_port = 5432
     elif len(host_args) == 2:
         db_hostname, db_port = host_args[0], int(host_args[1])
+    
+    #url = make_url("postgresql+pg8000://"+db_user+":"+db_pass+"@"+db_host+"/"+db_name)
 
     conn = sqlalchemy.create_engine(
     # Equivalent URL:
     # postgresql+pg8000://<db_user>:<db_pass>@<db_host>:<db_port>/<db_name>
-        sqlalchemy.engine.url.URL.create(
-            drivername="postgresql+pg8000",
-            username=db_user,  # e.g. "my-database-user"
-            password=db_pass,  # e.g. "my-database-password"
-            host=db_hostname,  # e.g. "127.0.0.1"
-            port=db_port,  # e.g. 5432
-            database=db_name  # e.g. "my-database-name"
-        )
-    )
+#        sqlalchemy.engine.URL.create(
+#            drivername="postgresql+pg8000",
+#            username=db_user,  # e.g. "my-database-user"
+#            password=db_pass,  # e.g. "my-database-password"
+#            host=db_hostname,  # e.g. "127.0.0.1"
+#            port=db_port,  # e.g. 5432
+#            database=db_name  # e.g. "my-database-name"
+#        )
+#    "postgresql+pg8000://"+db_user+":"+db_pass+"@"+db_host+"/"+db_name
+    "postgresql+pg8000://"+db_user+":"+db_pass+"@"+db_host+"/"+db_name)
     conn.connect()
+    print(conn)
     return conn 
 
 def get_schema(table_name, conn):
     metadata = MetaData(bind=None)
+    print(metadata)
     return Table(table_name, metadata, autoload=True, autoload_with=conn)
 
 def readMatchesFromSeason(table_name, conn, season, clean):
@@ -147,3 +161,33 @@ def clear_match_season(year, conn):
     stmt = delete(table).where(table.c.season == year)
     conn.execute(stmt)
     return print("Season", year, "has been deleted :)")
+
+def main_delete(global_yaml):
+    # Connecting to the database
+    conn = database_connection(global_yaml)
+    
+    # Table and season year
+    matches_table_name = "match_fof"
+    current_year = date.today().year 
+    season_year = current_year
+    if (date.today().month < 8):
+        season_year = current_year-1
+    
+    # Update match results for current season
+    clear_match_season(season_year, conn)
+    print(conn)
+    
+def main_insert(global_yaml):
+    # Connecting to the database
+    conn = database_connection(global_yaml)
+    
+    # Table and season year
+    matches_table_name = "match_fof"
+    current_year = date.today().year 
+    season_year = current_year
+    if (date.today().month < 8):
+        season_year = current_year-1
+    
+    matches_current_year = season_data(season_year,global_yaml)
+    insert_matches(conn, matches_table_name , matches_current_year)
+    print("This week's data has been updated successfully!")
