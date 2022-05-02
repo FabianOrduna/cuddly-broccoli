@@ -20,7 +20,7 @@ Finally, the data is available on GCP table in postgresql. The idea is that the 
 First we need to gather the data to predict next week's matches. Then, we predict and store the results in a postgres table.
 
 * ### Fetch:
-The airflow instance runs the function _fun1_ to fetch the data that we will use to predict. It saves the data in the table _predictions_.
+The airflow instance runs the function _generateFeatures_ to fetch the data that we will use to predict. It saves the data in the table _predictions_.
 
 * ### Predict
-We feed the model with the data from _predictions_ and save the scored in the _prediction\_result_ table.
+We feed the model with the data from _predictions_ and save the scored in the _prediction\_result_ column. The function is called _generatePredictions_.
