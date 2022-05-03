@@ -2,7 +2,6 @@ import generate_features
 import helper_etl
 import pandas as pd
 import numpy as np
-!pip3 install -U scikit-learn
 from sklearn import svm
 from sklearn.svm import SVC
 
