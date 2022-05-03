@@ -1,8 +1,8 @@
 import sys
 import subprocess
 # implement pip as a subprocess:
-#subprocess.check_call([sys.executable, '-m', 'pip', 'install', 
-#'pg8000<=1.16.5'])
+subprocess.check_call([sys.executable, '-m', 'pip', 'install', 
+'scikit-learn'])
 import yaml
 import requests
 import sqlalchemy
