@@ -2,6 +2,7 @@ import generate_features
 import helper_etl
 import pandas as pd
 import numpy as np
+!pip install sklearn
 from sklearn import svm
 from sklearn.svm import SVC
 
