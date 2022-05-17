@@ -23,7 +23,7 @@ params = {
 
 dag = DAG(
     dag_id='cuddly_broccoli_dag_mlops',
-    schedule_interval='0 3 * * *',
+    schedule_interval='0 0 * * *',
     start_date=days_ago(2),
     tags=['bash', 'python', 'mlops'],
     max_active_runs=3
