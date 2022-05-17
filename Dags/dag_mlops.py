@@ -8,6 +8,7 @@ from airflow.utils.dates import days_ago
 import os
 from GenerateFeatures import generateFeatures
 from GeneratePredictions import generatePrediction
+from endpoint import generatePredictionEndpoint
 
 path = os.path.dirname(os.path.abspath(__file__))
 script_path = os.path.join(path, 'dag_mlops.py')
@@ -22,7 +23,7 @@ params = {
 
 dag = DAG(
     dag_id='cuddly_broccoli_dag_mlops',
-    schedule_interval='0 0 * * *',
+    schedule_interval='0 3 * * *',
     start_date=days_ago(2),
     tags=['bash', 'python', 'mlops'],
     max_active_runs=3
@@ -52,4 +53,14 @@ predict_task = PythonOperator(
               'model_path' :params['model_path']}
 )
 
+endpoint_task = PythonOperator(
+    dag=dag,
+    task_id = 'endpoint',
+    provide_context=True,
+    python_callable=generatePredictionEndpoint,
+    op_kwargs={'global_yaml': params['global_yaml']}
+)
+
 fetch_task >> predict_task
+fetch_task >> endpoint_task
+

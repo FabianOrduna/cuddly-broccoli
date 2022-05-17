@@ -11,14 +11,15 @@ from helper_etl import main_insert
 
 path = os.path.dirname(os.path.abspath(__file__))
 script_path = os.path.join(path, 'etl_delete.py')
+yaml_path = os.path.join(path, 'yaml.yml')
 params = {
     'script': script_path,
-    'global_yaml': 'yaml.yml'
+    'global_yaml': yaml_path
 }
 
 dag = DAG(
     dag_id='cuddly_broccoli_dag',
-    schedule_interval='0 0 * * 1,7',
+    schedule_interval='0 0 * * *',
     start_date=days_ago(2),
     tags=['bash', 'python', 'lab8', 'demo'],
     max_active_runs=1
@@ -48,5 +49,3 @@ insert_task = PythonOperator(
 )
 
 delete_task >> insert_task
-
-
