@@ -48,7 +48,7 @@ Match results will be displayed, in a website, with tables containing the oppone
 
 ### 3. Data Product Architecture Diagram
 
-![diagram](https://user-images.githubusercontent.com/48302106/156964502-aab5ef13-f23c-4aee-8146-6538ee639148.png)
+<img width="520" alt="Picture1" src="https://user-images.githubusercontent.com/48302106/168720848-22cc1c9a-ad69-493d-906c-b4797dbc4b07.png">
 
 
 
