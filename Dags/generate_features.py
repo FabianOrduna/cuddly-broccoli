@@ -1,8 +1,8 @@
 import sys
 import subprocess
 # implement pip as a subprocess:
-subprocess.check_call([sys.executable, '-m', 'pip', 'install', 
-'scikit-learn'])
+#subprocess.check_call([sys.executable, '-m', 'pip', 'install', 
+#'pg8000<=1.16.5'])
 import yaml
 import requests
 import sqlalchemy
@@ -140,7 +140,7 @@ def readPredictions(conn, not_predicted):
     if (not_predicted == True):
         stmt = select(table.columns).where(and_(table.columns.prediction_result == None))
     else:
-        stmt = select(table)
+        stmt = select(table.columns)
     return conn.execute(stmt).fetchall()
 
 def update_prediction(conn, season, local, away, result):
